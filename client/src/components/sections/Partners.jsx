@@ -38,7 +38,7 @@ const Partners = ({ partners = defaultPartners, title = 'Trusted By Leading Comp
               <img
                 src={partner.logo}
                 alt={partner.name}
-                className="max-h-12 w-auto grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300 cursor-pointer"
+                className="max-h-8 w-auto grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300 cursor-pointer"
               />
             </motion.div>
           ))}
