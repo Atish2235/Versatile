@@ -5,55 +5,57 @@ import Container from '@components/ui/Container'
 import Card from '@components/ui/Card'
 import Button from '@components/ui/Button'
 
-const defaultPlans = [
+/**
+ * PDF PRICING PHILOSOPHY — CUSTOM, NOT FIXED
+ */
+const pdfPlans = [
   {
-    name: 'Starter',
-    price: 29,
-    description: 'Perfect for small projects and startups',
+    name: 'Starter Growth Plan',
+    description:
+      'For small businesses and startups in Pune & PCMC looking to build visibility and start generating enquiries.',
     features: [
-      '5 Projects',
-      'Basic Support',
-      '10GB Storage',
-      'Community Access',
-      'Basic Analytics',
+      'Local SEO setup',
+      'Social media optimisation',
+      'Basic Google Ads support',
+      'Monthly performance reports',
+      'Dedicated account support',
     ],
     popular: false,
   },
   {
-    name: 'Professional',
-    price: 79,
-    description: 'Ideal for growing businesses',
+    name: 'Business Growth Plan',
+    description:
+      'For growing businesses that want consistent leads, better ROI, and stronger brand presence.',
     features: [
-      'Unlimited Projects',
-      'Priority Support',
-      '100GB Storage',
-      'Advanced Analytics',
-      'Custom Integrations',
-      'Team Collaboration',
+      'Advanced SEO & local search optimisation',
+      'Google Ads & social media campaigns',
+      'Conversion-focused landing pages',
+      'Lead tracking & optimisation',
+      'Transparent monthly reporting',
     ],
     popular: true,
   },
   {
-    name: 'Enterprise',
-    price: 199,
-    description: 'For large-scale operations',
+    name: 'Custom Scale Plan',
+    description:
+      'For established businesses ready to scale aggressively across Pune, PCMC, and beyond.',
     features: [
-      'Unlimited Everything',
-      '24/7 Dedicated Support',
-      'Unlimited Storage',
-      'Advanced Security',
-      'Custom Solutions',
-      'SLA Guarantee',
-      'Training & Onboarding',
+      'End-to-end digital strategy',
+      'High-intent paid campaigns',
+      'Website optimisation & CRO',
+      'Branding & creative support',
+      'Performance-driven growth roadmap',
     ],
     popular: false,
   },
 ]
 
-const Pricing = ({ plans = defaultPlans }) => {
+const Pricing = ({ plans = pdfPlans }) => {
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-[#F5F7FA]">
       <Container>
+
+        {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -61,56 +63,64 @@ const Pricing = ({ plans = defaultPlans }) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="mb-4">Simple, Transparent Pricing</h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-            Choose the perfect plan for your needs. No hidden fees, no surprises.
+          <h2 className="mb-4 text-neutral-900">
+            How Much Does Digital Marketing Cost in Pune?
+          </h2>
+          <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
+            The cost isn’t the same for everyone. It depends on your business, your competition, and the results you want.
+            We create custom plans that fit your budget — no unnecessary extras, no hidden charges.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Pricing Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {plans.map((plan, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="relative"
             >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-white px-4 py-1 rounded-full text-sm font-medium">
-                  Most Popular
-                </div>
-              )}
-              <Card className={`h-full flex flex-col ${plan.popular ? 'ring-2 ring-primary' : ''}`}>
+              <Card
+                className={`h-full flex flex-col p-8 bg-white rounded-2xl shadow-lg transition-all duration-500
+                ${plan.popular ? 'ring-2 ring-[#35B6D9] scale-[1.02]' : 'hover:shadow-xl'}`}
+              >
+                {/* Header */}
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                  <p className="text-neutral-600 text-sm mb-4">{plan.description}</p>
-                  <div className="flex items-baseline justify-center">
-                    <span className="text-5xl font-bold text-neutral-900">${plan.price}</span>
-                    <span className="text-neutral-600 ml-2">/month</span>
-                  </div>
+                  <h3 className="text-2xl font-bold mb-3 text-neutral-900">
+                    {plan.name}
+                  </h3>
+                  <p className="text-neutral-600 text-sm">
+                    {plan.description}
+                  </p>
                 </div>
 
+                {/* Features */}
                 <ul className="space-y-3 mb-8 flex-1">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start">
-                      <FiCheck className="w-5 h-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
-                      <span className="text-neutral-600">{feature}</span>
+                      <FiCheck className="w-5 h-5 text-[#35B6D9] mr-3 mt-0.5" />
+                      <span className="text-neutral-600">
+                        {feature}
+                      </span>
                     </li>
                   ))}
                 </ul>
 
+                {/* CTA */}
                 <Button
                   variant={plan.popular ? 'primary' : 'outline'}
                   className="w-full"
                 >
-                  Get Started
+                  Get a Custom Quote
                 </Button>
               </Card>
             </motion.div>
           ))}
         </div>
+
       </Container>
     </section>
   )

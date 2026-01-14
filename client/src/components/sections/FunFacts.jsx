@@ -1,48 +1,59 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { FiTrendingUp, FiUsers, FiAward, FiSmile } from 'react-icons/fi'
+import { FiMapPin, FiUsers, FiLayers, FiBarChart2 } from 'react-icons/fi'
 import Container from '@components/ui/Container'
 
-const defaultFacts = [
+/**
+ * PDF LOCAL & TRUST SIGNALS — USED AS-IS
+ */
+const pdfFacts = [
   {
-    icon: FiTrendingUp,
-    value: '10',
-    suffix: 'K+',
-    label: 'Projects Completed',
-    color: 'from-primary to-blue-600',
+    icon: FiMapPin,
+    value: 'Akurdi',
+    suffix: '',
+    label: 'Based in Akurdi, Serving PCMC & Pune',
   },
   {
     icon: FiUsers,
-    value: '5',
-    suffix: 'K+',
-    label: 'Happy Clients',
-    color: 'from-accent to-orange-600',
+    value: '200+',
+    suffix: '',
+    label: 'Businesses Served Across Multiple Industries',
   },
   {
-    icon: FiAward,
-    value: '50',
-    suffix: '+',
-    label: 'Awards Won',
-    color: 'from-green-500 to-emerald-600',
+    icon: FiLayers,
+    value: 'In-House',
+    suffix: '',
+    label: 'Marketing, Design & Development Team',
   },
   {
-    icon: FiSmile,
-    value: '99',
-    suffix: '%',
-    label: 'Satisfaction Rate',
-    color: 'from-purple-500 to-pink-600',
+    icon: FiBarChart2,
+    value: 'ROI',
+    suffix: '',
+    label: 'Focused Campaigns With Measurable Results',
   },
 ]
 
-const FunFacts = ({ facts = defaultFacts, background = 'light' }) => {
-  const bgClass = background === 'dark' 
-    ? 'bg-gradient-to-br from-neutral-900 to-neutral-800 text-white'
-    : 'bg-gradient-to-br from-neutral-50 to-white'
+const FunFacts = ({ facts = pdfFacts, background = 'dark' }) => {
+  const isDark = background === 'dark'
 
   return (
-    <section className={`section-padding ${bgClass}`}>
-      <Container>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+    <section
+      className={`relative py-24 overflow-hidden ${
+        isDark
+          ? 'bg-gradient-to-br from-[#0E1E26] via-[#123747] to-[#0E1E26]'
+          : 'bg-[#F5F7FA]'
+      }`}
+    >
+      {/* subtle glow */}
+      {isDark && (
+        <div className="absolute inset-0">
+          <div className="absolute top-[-20%] left-1/4 w-[400px] h-[400px] bg-[#35B6D9]/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-[-20%] right-1/4 w-[400px] h-[400px] bg-[#F5C144]/10 rounded-full blur-3xl" />
+        </div>
+      )}
+
+      <Container className="relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           {facts.map((fact, index) => (
             <motion.div
               key={index}
@@ -52,18 +63,37 @@ const FunFacts = ({ facts = defaultFacts, background = 'light' }) => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="text-center"
             >
-              <div className={`w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${fact.color} flex items-center justify-center shadow-lg`}>
-                <fact.icon size={32} className="text-white" />
+              {/* Icon */}
+              <div
+                className={`w-20 h-20 mx-auto mb-5 rounded-2xl flex items-center justify-center
+                ${
+                  isDark
+                    ? 'bg-white/10 backdrop-blur border border-white/10'
+                    : 'bg-white shadow-md'
+                }`}
+              >
+                <fact.icon
+                  size={32}
+                  className="text-[#35B6D9]"
+                />
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">
-                <span className={background === 'dark' ? 'text-white' : 'text-neutral-900'}>
+
+              {/* Value */}
+              <div className="text-2xl md:text-3xl font-bold mb-2">
+                <span className={isDark ? 'text-white' : 'text-neutral-900'}>
                   {fact.value}
                 </span>
-                <span className={background === 'dark' ? 'text-primary-300' : 'text-primary'}>
-                  {fact.suffix}
-                </span>
+                {fact.suffix && (
+                  <span className="text-[#F5C144]">{fact.suffix}</span>
+                )}
               </div>
-              <p className={`text-sm md:text-base ${background === 'dark' ? 'text-neutral-300' : 'text-neutral-600'}`}>
+
+              {/* Label */}
+              <p
+                className={`text-sm md:text-base max-w-[220px] mx-auto ${
+                  isDark ? 'text-[#C7D2DA]' : 'text-neutral-600'
+                }`}
+              >
                 {fact.label}
               </p>
             </motion.div>

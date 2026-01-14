@@ -3,63 +3,69 @@ import { motion } from 'framer-motion'
 import Container from '@components/ui/Container'
 import Button from '@components/ui/Button'
 
-const categories = ['All', 'Web Design', 'Mobile App', 'Branding', 'Marketing']
+const categories = ['All', 'SEO', 'Google Ads', 'Social Media', 'Website']
 
-const defaultProjects = [
+/**
+ * PDF RESULT-BASED PORTFOLIO CONTENT
+ */
+const pdfProjects = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    category: 'Web Design',
-    image: 'https://picsum.photos/seed/project1/600/400',
-    description: 'Modern online shopping experience',
+    title: 'Retail Outlet – Akurdi',
+    category: 'Social Media',
+    image: 'https://picsum.photos/seed/akurdi-retail/600/400',
+    description: 'Increased in-store visits by 170% within 4 months using local social media campaigns.',
   },
   {
     id: 2,
-    title: 'Fitness Tracking App',
-    category: 'Mobile App',
-    image: 'https://picsum.photos/seed/project2/600/400',
-    description: 'Health and wellness mobile solution',
+    title: 'Manufacturing Company – PCMC',
+    category: 'Google Ads',
+    image: 'https://picsum.photos/seed/pcmc-manufacturing/600/400',
+    description: 'Reduced cost per lead from ₹280 to ₹95 in just 3 months through optimised PPC campaigns.',
   },
   {
     id: 3,
-    title: 'Corporate Rebranding',
-    category: 'Branding',
-    image: 'https://picsum.photos/seed/project3/600/400',
-    description: 'Complete brand identity refresh',
+    title: 'Local Service Business – Pune',
+    category: 'SEO',
+    image: 'https://picsum.photos/seed/pune-seo/600/400',
+    description: 'Achieved first-page Google rankings for high-intent keywords related to digital marketing services in Pune.',
   },
   {
     id: 4,
-    title: 'Digital Campaign',
-    category: 'Marketing',
-    image: 'https://picsum.photos/seed/project4/600/400',
-    description: 'Multi-channel marketing strategy',
+    title: 'Clinic Website – Pimpri',
+    category: 'Website',
+    image: 'https://picsum.photos/seed/pimpri-clinic/600/400',
+    description: 'Built a conversion-focused website integrated with local SEO and lead tracking.',
   },
   {
     id: 5,
-    title: 'SaaS Dashboard',
-    category: 'Web Design',
-    image: 'https://picsum.photos/seed/project5/600/400',
-    description: 'Analytics and reporting platform',
+    title: 'Retail Brand – PCMC',
+    category: 'Social Media',
+    image: 'https://picsum.photos/seed/pcmc-retail/600/400',
+    description: 'Generated consistent enquiries through optimised social media content and local targeting.',
   },
   {
     id: 6,
-    title: 'Food Delivery App',
-    category: 'Mobile App',
-    image: 'https://picsum.photos/seed/project6/600/400',
-    description: 'On-demand food ordering service',
+    title: 'Service Provider – Pune',
+    category: 'SEO',
+    image: 'https://picsum.photos/seed/pune-service/600/400',
+    description: 'Improved organic visibility and lead quality using SEO and Google Business Profile optimisation.',
   },
 ]
 
-const Portfolio = ({ projects = defaultProjects }) => {
+const Portfolio = ({ projects = pdfProjects }) => {
   const [activeCategory, setActiveCategory] = useState('All')
 
-  const filteredProjects = activeCategory === 'All'
-    ? projects
-    : projects.filter(project => project.category === activeCategory)
+  const filteredProjects =
+    activeCategory === 'All'
+      ? projects
+      : projects.filter(project => project.category === activeCategory)
 
   return (
     <section className="section-padding bg-white">
       <Container>
+
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -67,14 +73,16 @@ const Portfolio = ({ projects = defaultProjects }) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="mb-4">Our Portfolio</h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto mb-8">
-            Explore our recent work and see how we've helped clients achieve their goals
+          <h2 className="mb-4">
+            Real Results Delivered for Businesses in Pune & PCMC
+          </h2>
+          <p className="text-lg text-neutral-600 max-w-3xl mx-auto mb-8">
+            We don’t just talk about growth — we deliver measurable outcomes for local businesses across Akurdi, PCMC, and Pune.
           </p>
 
           {/* Category Filter */}
           <div className="flex flex-wrap justify-center gap-3">
-            {categories.map((category) => (
+            {categories.map(category => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
@@ -90,11 +98,12 @@ const Portfolio = ({ projects = defaultProjects }) => {
           </div>
         </motion.div>
 
+        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -106,7 +115,7 @@ const Portfolio = ({ projects = defaultProjects }) => {
                   alt={project.title}
                   className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                   <span className="text-primary-300 text-sm font-medium mb-2">
                     {project.category}
                   </span>
@@ -122,6 +131,7 @@ const Portfolio = ({ projects = defaultProjects }) => {
           ))}
         </div>
 
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -130,9 +140,10 @@ const Portfolio = ({ projects = defaultProjects }) => {
           className="text-center mt-12"
         >
           <Button to="/projects" variant="outline" size="lg">
-            View All Projects
+            View More Case Studies
           </Button>
         </motion.div>
+
       </Container>
     </section>
   )

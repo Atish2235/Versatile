@@ -16,7 +16,7 @@ const Button = ({
   iconPosition = 'left',
   ...props
 }) => {
-  const baseClasses = 'btn'
+  const baseClasses = 'btn group'
   
   const variantClasses = {
     primary: 'btn-primary',
@@ -40,9 +40,9 @@ const Button = ({
 
   const content = (
     <>
-      {icon && iconPosition === 'left' && <span className="mr-2">{icon}</span>}
-      {children}
-      {icon && iconPosition === 'right' && <span className="ml-2">{icon}</span>}
+      {icon && iconPosition === 'left' && <span className="mr-2 transition-transform group-hover:translate-x-[-4px]">{icon}</span>}
+      <span className="relative z-10">{children}</span>
+      {icon && iconPosition === 'right' && <span className="ml-2 transition-transform group-hover:translate-x-[4px]">{icon}</span>}
     </>
   )
 

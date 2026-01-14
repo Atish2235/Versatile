@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,49 +10,77 @@
   }
   
   body {
-    @apply font-body text-neutral-700 antialiased;
+    @apply antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #E5E7EB;
+    background: #0E0F12;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-bold text-neutral-900;
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-weight: 700;
+    color: #474646;
   }
 
   h1 {
     @apply text-4xl md:text-5xl lg:text-6xl;
+    font-weight: 800;
   }
 
   h2 {
     @apply text-3xl md:text-4xl lg:text-5xl;
+    font-weight: 800;
   }
 
   h3 {
     @apply text-2xl md:text-3xl lg:text-4xl;
+    font-weight: 700;
   }
 
   h4 {
     @apply text-xl md:text-2xl;
+    font-weight: 700;
   }
 }
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
   }
 
   .btn-primary {
-    @apply bg-primary text-white hover:bg-primary-600 focus:ring-primary-500 shadow-md hover:shadow-lg;
+    @apply bg-[#F6BC3D] text-[#0E0F12] hover:shadow-lg;
+    position: relative;
+  }
+
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #EF4444;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  .btn-primary:hover::after {
+    width: 80%;
   }
 
   .btn-accent {
-    @apply bg-accent text-white hover:bg-accent-600 focus:ring-accent-500 shadow-md hover:shadow-lg;
+    @apply bg-[#3DB7E4] text-white hover:shadow-lg;
   }
 
   .btn-outline {
-    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white focus:ring-primary-500;
+    @apply border-2 border-[#3DB7E4] text-[#3DB7E4] hover:bg-[#3DB7E4] hover:text-white;
   }
 
   .btn-ghost {
-    @apply text-primary hover:bg-primary-50 focus:ring-primary-500;
+    @apply text-[#3DB7E4] hover:bg-[#3DB7E4]/10;
   }
 
   .btn-lg {
@@ -70,15 +100,20 @@
   }
 
   .card {
-    @apply bg-white rounded-2xl shadow-soft hover:shadow-medium transition-shadow duration-300;
+    @apply bg-[#14161C] rounded-2xl shadow-lg transition-all duration-300 border border-[#3DB7E4]/15;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(61, 183, 228, 0.2);
   }
 
   .input {
-    @apply w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all;
+    @apply w-full px-4 py-3 rounded-lg border border-[#CBD5E1] bg-[#F5F7FA] text-[#0E0F12] focus:outline-none focus:ring-2 focus:ring-[#3DB7E4] focus:border-transparent transition-all;
   }
 
   .textarea {
-    @apply w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none;
+    @apply w-full px-4 py-3 rounded-lg border border-[#CBD5E1] bg-[#F5F7FA] text-[#0E0F12] focus:outline-none focus:ring-2 focus:ring-[#3DB7E4] focus:border-transparent transition-all resize-none;
   }
 }
 
@@ -86,9 +121,30 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .text-subheading {
+    color: #C9D3DC;
+  }
+
+  .glass-morphism {
+    background: rgba(14, 15, 18, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* Make hero background extend behind the fixed header.
+     Adjust --header-height if your header height changes. */
+  :root {
+    --header-height: 64px;
+  }
+
+  .hero-extend {
+    margin-top: calc(var(--header-height) * -1);
+    padding-top: var(--header-height);
+  }
 }
 
-/* Custom Animations */
+/* Micro-interactions */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -98,12 +154,30 @@
   }
 }
 
-@keyframes pulse-slow {
+@keyframes underline-grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes card-lift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes glow {
   0%, 100% {
-    opacity: 1;
+    box-shadow: 0 0 20px rgba(61, 183, 228, 0.3);
   }
   50% {
-    opacity: 0.5;
+    box-shadow: 0 0 40px rgba(61, 183, 228, 0.6);
   }
 }
 
@@ -111,8 +185,8 @@
   animation: float 6s ease-in-out infinite;
 }
 
-.animate-pulse-slow {
-  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
 }
 
 /* Smooth Scrolling */
@@ -126,14 +200,26 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #14161C;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0B76EF;
+  background: #3DB7E4;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #095EC0;
+  background: #2A9BC9;
+}
+
+/* Section reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }

@@ -15,14 +15,7 @@ import CTA from '@components/sections/CTA'
 const Home = () => {
   return (
     <>
-      <Hero
-        title="Build Amazing Digital Experiences"
-        subtitle="We create innovative solutions that help businesses grow and succeed in the digital world."
-        ctaPrimary="Get Started"
-        ctaSecondary="Learn More"
-        ctaPrimaryLink="/contact"
-        ctaSecondaryLink="/about"
-      />
+      <Hero />
       <Partners />
       <Features />
       <Services />

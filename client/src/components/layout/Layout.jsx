@@ -5,7 +5,7 @@ import Footer from './Footer'
 
 const Layout = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-[#0E0F12]">
       <Header />
       <main className="flex-1 pt-[72px]">
         <Outlet />

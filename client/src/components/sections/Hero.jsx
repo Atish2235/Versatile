@@ -1,45 +1,40 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-// import HeroImage from '../../assets/hero-images/itprof.png' // Removed broken import
-
-// Make sure these paths match your actual folder structure for components
 import Container from '../ui/Container'
 import Button from '../ui/Button'
 
 const Hero = ({
-  title = 'Secure IT Solutions For a More Secure Environment', // Updated to match your screenshot
-  subtitle = 'We create innovative solutions that help businesses grow and succeed in the digital world.',
-  ctaPrimary = 'Get Started',
-  ctaSecondary = 'Contact Us',
+  title = 'Digital Marketing Company in Akurdi, Pune with 9+ Years of Expertise.',
+  subtitle = "We're a full-stack digital marketing company in Pune, based in Akurdi–PCMC, helping your business get real leads, not just clicks.",
+  ctaPrimary = 'Get a Free Consultation',
   ctaPrimaryLink = '/contact',
-  ctaSecondaryLink = '/about',
- 
   illustration,
 }) => {
   return (
-    <section className="relative bg-gradient-to-br from-neutral-50 to-primary-50 overflow-hidden">
+    <section 
+      className="relative overflow-hidden hero-extend min-h-screen"
+      style={{
+        background: 'radial-gradient(circle at top left, #3DB7E4, #0E0F12 65%)'
+      }}
+    >
       <Container>
-        {/* Reduce top/bottom padding to move content up */}
-        <div className="pt-8 pb-8 flex flex-col lg:flex-row items-center gap-16">
+        <div className="pt-20 pb-20 flex flex-col lg:flex-row items-center gap-24 lg:pl-0">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex-1 text-center lg:text-left"
+            className="flex-[0.95] text-center lg:text-left lg:-ml-12"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 text-balance">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 text-balance">
               {title}
             </h1>
-            <p className="text-lg md:text-xl text-neutral-600 mb-8 max-w-2xl">
+            <p className="text-lg md:text-xl text-subheading mb-8 max-w-3xl">
               {subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button to={ctaPrimaryLink} variant="primary" size="lg">
                 {ctaPrimary}
-              </Button>
-              <Button to={ctaSecondaryLink} variant="outline" size="lg">
-                {ctaSecondary}
               </Button>
             </div>
           </motion.div>
@@ -49,36 +44,44 @@ const Hero = ({
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-1 relative"
+            className="flex-[1.05] relative"
           >
-            <div className="aspect-square max-w-xl mx-auto relative">
-              {/* Revolving dots image */}
-              <motion.img
+            <div className="aspect-[4/3] max-w-5xl mx-auto relative">
+              {/* revolving background image behind main hero (moved upward) */}
+              <img
                 src="/hero-images/revolvingdots.png"
-                alt="Revolving Dots"
-                className="absolute inset-0 m-auto w-full h-full object-contain pointer-events-none"
-                style={{ zIndex: 5 }}
-                animate={{ rotate: 360 }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 8,
-                  ease: "linear"
+                alt=""
+                className="pointer-events-none revolve absolute"
+                style={{
+                  right: '3%',
+                  top: '2%',
+                  transform: 'translateY(0)',
+                  width: 520,
+                  opacity: 0.45,
+                  zIndex: 2,
                 }}
               />
-              {/* Main image */}
+
+              {/* Use the new hero image from public/hero-images (reduced size) */}
               <img
-                src="/hero-images/itprof.png"
-                alt="IT Professional"
-                className="w-full h-full object-contain z-10 relative"
+                src="/hero-images/heroimage.png"
+                alt="Hero"
+                className="w-full h-full object-contain z-10 relative pointer-events-none transform scale-90"
+                style={{ zIndex: 5 }}
               />
-              
-              {/* Decorative Elements (Blobs) behind the image */}
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-accent rounded-full opacity-20 blur-2xl" />
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary rounded-full opacity-20 blur-2xl" />
+
+              {/* Decorative Elements */}
+              <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#F6BC3D] rounded-full opacity-20 blur-2xl animate-pulse-slow" />
+              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-[#3DB7E4] rounded-full opacity-20 blur-2xl animate-pulse-slow" />
             </div>
           </motion.div>
         </div>
       </Container>
+
+      <style>{`
+        @keyframes spin360 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .revolve { animation: spin360 18s linear infinite; transform-origin: center center; will-change: transform; }
+      `}</style>
     </section>
   )
 }

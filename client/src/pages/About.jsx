@@ -17,7 +17,7 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="mb-6">About Spet</h1>
+            <h1 className="mb-6">About Versatile</h1>
             <p className="text-xl text-neutral-600 mb-8">
               We're a passionate team of designers, developers, and strategists dedicated to creating exceptional digital experiences that drive real business results.
             </p>
@@ -37,7 +37,7 @@ const About = () => {
             >
               <h2 className="mb-6">Our Story</h2>
               <p className="text-neutral-600 mb-4">
-                Founded in 2008, Spet has grown from a small startup to a leading digital agency serving clients worldwide. Our journey has been driven by a simple philosophy: combine creativity with technology to solve complex business challenges.
+                Founded in 2008, Versatile has grown from a small startup to a leading digital agency serving clients worldwide. Our journey has been driven by a simple philosophy: combine creativity with technology to solve complex business challenges.
               </p>
               <p className="text-neutral-600 mb-4">
                 Over the years, we've had the privilege of working with startups, Fortune 500 companies, and everything in between. Each project has taught us valuable lessons and helped us refine our approach to digital excellence.
